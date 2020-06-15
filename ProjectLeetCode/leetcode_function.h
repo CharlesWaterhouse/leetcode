@@ -95,6 +95,7 @@ int removeElement(std::vector<int>& nums, int val);
 
 int strStr(std::string haystack, std::string needle);
 
+int divide(int dividend, int divisor);
 
 
 

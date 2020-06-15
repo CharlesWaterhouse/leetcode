@@ -6,6 +6,7 @@
 int main()
 {
 
+	int divide_ans = divide(-2147483647, 1);
 
 	int ans_ = strStr("mississippi", "pi");
 

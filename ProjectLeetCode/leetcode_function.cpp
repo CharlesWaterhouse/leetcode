@@ -1006,8 +1006,36 @@ int strStr(string haystack, string needle)
 
 
 
-int divide(int dividend, int divisor) 
+int divide(int dividend, int divisor)
 {
 
+	if (divisor == 0 || (dividend == INT_MIN && divisor == -1))
+	{
+		return INT_MAX;
+	}
+
+	const bool is_pos_dividend = dividend > 0;
+	unsigned int pos_dividend = is_pos_dividend ? dividend : -(unsigned int)dividend;
+	const bool is_pos_divisor = divisor > 0;
+	unsigned int  pos_divisor = is_pos_divisor ? divisor : -(unsigned int)divisor;
+
+	unsigned int quotient = 0;
+	unsigned int remainder = pos_dividend;
+
+	while (remainder >= pos_divisor)
+	{ 
+		unsigned int a_quotient = 1;
+		unsigned int subtract_num = pos_divisor;
+		while (subtract_num <= INT_MAX&& subtract_num <= (remainder >> 1))
+		{
+			a_quotient = a_quotient << 1;
+			subtract_num = subtract_num << 1;
+		}
+		remainder = remainder - subtract_num;
+		quotient = quotient + a_quotient;
+	}
+	return (int)((is_pos_dividend^is_pos_divisor)?-quotient:quotient);
 }
+
+
 
